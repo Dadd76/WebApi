@@ -1,0 +1,26 @@
+dotnet new webapi -o MyWebApi :
+
+dotnet new webapi : Crée un nouveau projet Web API.
+-o MyWebApi : Spécifie le nom du répertoire de sortie pour le projet. Un répertoire nommé MyWebApi sera créé et le projet sera généré dedans.
+cd MyWebApi : Change le répertoire actuel pour le répertoire du projet nouvellement créé.
+
+code . : Ouvre le répertoire courant dans Visual Studio Code.
+
+dotnet restore : Télécharge et installe les packages dépendants nécessaires pour le projet.
+
+https://www.youtube.com/watch?v=a887F3Bs24U
+
+*******************controller-based web API / Minimal API 
+
+pour lister les templates disponnibles 'dotnet new list'
+
+controller-based web API : dotnet new webapi --use-controllers -o MyControllerWebApi
+Minimal API (par défaut) : dotnet new webapi -o MyWebApi
+
+https://learn.microsoft.com/en-us/aspnet/core/fundamentals/apis?view=aspnetcore-8.0
+
+********************Git
+git init
+git remote add origin https://github.com/Dadd76/WebApi      
+
+git push --set-upstream origin master
