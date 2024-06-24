@@ -58,8 +58,6 @@ dotnet tool uninstall -g dotnet-aspnet-codegenerator
 dotnet tool install -g dotnet-aspnet-codegenerator
 dotnet tool update -g dotnet-aspnet-codegenerator
 
-
-
 Trust the HTTPS development certificate by running the following command:
 
 .NET CLI
@@ -67,6 +65,11 @@ Trust the HTTPS development certificate by running the following command:
 Copy
 dotnet dev-certs https --trust
 
+// add gitignore
+dotnet new gitignore
+
+//Tutorial: Call an ASP.NET Core web API with JavaScript
+https://learn.microsoft.com/en-us/aspnet/core/tutorials/web-api-javascript?view=aspnetcore-8.0
 
 
 

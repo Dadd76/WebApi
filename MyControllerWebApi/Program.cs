@@ -24,6 +24,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Html javascript page
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
+
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

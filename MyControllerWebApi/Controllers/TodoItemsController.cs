@@ -31,7 +31,7 @@ namespace MyControllerWebApi.Controllers;
 
         // GET: api/TodoItems/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<TodoItemDTO>> GetTodoItems(long id)
+        public async Task<ActionResult<TodoItemDTO>> GetTodoItem(long id)
         {
             var todoItems = await _context.TodoItems.FindAsync(id);
 
@@ -95,7 +95,7 @@ namespace MyControllerWebApi.Controllers;
 
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(TodoItem),new { id = todoItem.Id },ItemToDTO(todoItem));
+            return CreatedAtAction(nameof(GetTodoItem),new { id = todoItem.Id },ItemToDTO(todoItem));
            // return CreatedAtAction("GetTodoItems", new { id = todoItems.Id }, todoItems);
         }
 
