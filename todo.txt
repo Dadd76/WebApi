@@ -12,6 +12,8 @@ https://www.youtube.com/watch?v=a887F3Bs24U
 
 *******************controller-based web API / Minimal API 
 
+https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-8.0&tabs=visual-studio
+
 pour lister les templates disponnibles 'dotnet new list'
 
 controller-based web API : dotnet new webapi --use-controllers -o MyControllerWebApi
@@ -22,5 +24,51 @@ https://learn.microsoft.com/en-us/aspnet/core/fundamentals/apis?view=aspnetcore-
 ********************Git
 git init
 git remote add origin https://github.com/Dadd76/WebApi      
+git add .
+git commit -m "first commit controller based API and Minimal API"
+git push --set-upstream origin master      
 
-git push --set-upstream origin master
+********************Build and Run 
+dotnet Build
+dotnet Run 
+Api listenning on http://localhost:5095/WeatherForecast
+
+
+********************swagger
+
+https://swagger.io/tools/swagger-ui/
+http://localhost:5095/swagger/v1/swagger.json
+http://localhost:5095/swagger/index.html
+
+
+
+additionnal package 
+
+//DbContext 
+
+dotnet add package Microsoft.EntityFrameworkCore.InMemory
+
+//Scaffold controller
+
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet tool uninstall -g dotnet-aspnet-codegenerator
+dotnet tool install -g dotnet-aspnet-codegenerator
+dotnet tool update -g dotnet-aspnet-codegenerator
+
+
+
+Trust the HTTPS development certificate by running the following command:
+
+.NET CLI
+
+Copy
+dotnet dev-certs https --trust
+
+
+
+
+
+https://learn.microsoft.com/en-us/shows/back-end-web-development-with-dotnet-for-beginners/
