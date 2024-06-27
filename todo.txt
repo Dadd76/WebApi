@@ -21,6 +21,11 @@ Minimal API (par défaut) : dotnet new webapi -o MyWebApi
 
 https://learn.microsoft.com/en-us/aspnet/core/fundamentals/apis?view=aspnetcore-8.0
 
+
+******************* Minimal Api 
+https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-8.0&tabs=visual-studio
+
+
 ********************Git
 git init
 git remote add origin https://github.com/Dadd76/WebApi      
@@ -71,7 +76,57 @@ dotnet new gitignore
 //Tutorial: Call an ASP.NET Core web API with JavaScript
 https://learn.microsoft.com/en-us/aspnet/core/tutorials/web-api-javascript?view=aspnetcore-8.0
 
-
-
+//curl -X
+ curl -X 'GET'   'http://localhost:5095/api/TodoItems/1'   -H 'accept: text/plain'
 
 https://learn.microsoft.com/en-us/shows/back-end-web-development-with-dotnet-for-beginners/
+
+
+
+PS C:\Users\dadd\Source\Repos\ApiWebC#> dotnet new list
+Ces modèles correspondent à votre entrée : .
+
+Nom du modèle                                         Nom court                   Langue      Balises
+----------------------------------------------------  --------------------------  ----------  --------------------------
+API web ASP.NET Core                                  webapi                      [C#],F#     Web/Web API/API/Service   
+API web ASP.NET Core (AOT natif)                      webapiaot                   [C#]        Web/Web API/API/Service
+Application console                                   console                     [C#],F#,VB  Common/Console
+Application web ASP.NET Core                          webapp,razor                [C#]        Web/MVC/Razor Pages
+Application web ASP.NET Core (modèle-vue-contrôleur)  mvc                         [C#],F#     Web/MVC
+Application web Blazor                                blazor                      [C#]        Web/Blazor/WebAssembly
+Application WebAssembly Blazor                        blazorwasm                  [C#]        Web/Blazor/WebAssembly/PWA
+Application Windows Forms                             winforms                    [C#],VB     Common/WinForms
+Application WPF                                       wpf                         [C#],VB     Common/WPF
+ASP.NET Core vide                                     web                         [C#],F#     Web/Empty
+Bibliothèque de classe                                classlib                    [C#],F#,VB  Common/Library
+Bibliothèque de classes Razor                         razorclasslib               [C#]        Web/Razor/Library
+Bibliothèque de classes Windows Forms                 winformslib                 [C#],VB     Common/WinForms
+Bibliothèque de classes WPF                           wpflib                      [C#],VB     Common/WPF
+Bibliothèque de contrôles personnalisés WPF           wpfcustomcontrollib         [C#],VB     Common/WPF
+Bibliothèque de contrôles utilisateur WPF             wpfusercontrollib           [C#],VB     Common/WPF
+Bibliothèque de contrôles Windows Forms               winformscontrollib          [C#],VB     Common/WinForms
+Composant Razor                                       razorcomponent              [C#]        Web/ASP.NET
+Configuration NuGet                                   nugetconfig,nuget.config                Config
+Configuration web                                     webconfig                               Config
+Contrôleur API                                        apicontroller               [C#]        Web/ASP.NET
+Contrôleur MVC                                        mvccontroller               [C#]        Web/ASP.NET
+Fichier .editorconfig                                 editorconfig,.editorconfig              Config
+fichier gitignore dotnet                              gitignore,.gitignore                    Config
+fichier global.json                                   globaljson,global.json                  Config
+Fichier manifeste de l’outil local Dotnet             tool-manifest                           Config
+Fichier MSBuild Directory.Build.props                 buildprops                              MSBuild/props
+Fichier MSBuild Directory.Build.targets               buildtargets                            MSBuild/props
+Fichier solution                                      sln,solution                            Solution
+Fichier tampon de protocole                           proto                                   Web/gRPC
+MSTest Playwright Test Project                        mstest-playwright           [C#]        Test/MSTest/Playwright
+MSTest Test Project                                   mstest                      [C#],F#,VB  Test/MSTest
+MVC ViewImports                                       viewimports                 [C#]        Web/ASP.NET
+MVC ViewStart                                         viewstart                   [C#]        Web/ASP.NET
+NUnit 3 Test Item                                     nunit-test                  [C#],F#,VB  Test/NUnit
+NUnit 3 Test Project                                  nunit                       [C#],F#,VB  Test/NUnit
+NUnit Playwright Test Project                         nunit-playwright            [C#]        Test/NUnit/Playwright
+Page Razor                                            page                        [C#]        Web/ASP.NET
+Service gRPC ASP.NET Core                             grpc                        [C#]        Web/gRPC/API/Service
+Service Worker                                        worker                      [C#],F#     Common/Worker/Web
+Vue Razor                                             view                        [C#]        Web/ASP.NET
+xUnit Test Project                                    xunit                       [C#],F#,VB  Test/xUnit
