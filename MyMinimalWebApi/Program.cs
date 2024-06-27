@@ -1,46 +1,92 @@
+using MyMinimalWebApi.Models;
+using Microsoft.EntityFrameworkCore;
+using NSwag.AspNetCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddOpenApiDocument(config =>
+{
+    config.DocumentName = "TodoAPI";
+    config.Title = "TodoAPI v1";
+    config.Version = "v1";
+});
+
+
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+//http://localhost:5110/swagger/index.html
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseOpenApi();
+    app.UseSwaggerUi(config =>
+    {
+        config.DocumentTitle = "TodoAPI";
+        config.Path = "/swagger";
+        config.DocumentPath = "/swagger/{documentName}/swagger.json";
+        config.DocExpansion = "list";
+        //http://localhost:5110/swagger/TodoAPI/swagger.json
+    });
 }
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
 
 app.MapGet("/", () => "Hello World!");
 
-app.MapGet("/weatherforecast", () =>
+app.MapGet("/todoitems", async (TodoContext db) =>
+    await db.TodoItems.ToListAsync());
+
+app.MapGet("/todoitems/complete", async (TodoContext db) =>
+    await db.TodoItems.Where(t => t.IsComplete).ToListAsync());
+
+app.MapGet("/todoitems/{id}", async (int id, TodoContext db) =>
+    await db.TodoItems.FindAsync(id)
+        is TodoItem todo
+            ? Results.Ok(todo)
+            : Results.NotFound());
+
+app.MapPost("/todoitems", async (TodoItem todo, TodoContext db) =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+    db.TodoItems.Add(todo);
+    await db.SaveChangesAsync();
+
+    return Results.Created($"/todoitems/{todo.Id}", todo);
+});
+
+app.MapPut("/todoitems/{id}", async (int id, TodoItem inputTodo, TodoContext db) =>
+{
+    var todo = await db.TodoItems.FindAsync(id);
+
+    if (todo is null) return Results.NotFound();
+
+    todo.Name = inputTodo.Name;
+    todo.IsComplete = inputTodo.IsComplete;
+
+    await db.SaveChangesAsync();
+
+    return Results.NoContent();
+});
+
+app.MapDelete("/todoitems/{id}", async (int id, TodoContext db) =>
+{
+    if (await db.TodoItems.FindAsync(id) is TodoItem todo)
+    {
+        db.TodoItems.Remove(todo);
+        await db.SaveChangesAsync();
+        return Results.NoContent();
+    }
+
+    return Results.NotFound();
+});
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
