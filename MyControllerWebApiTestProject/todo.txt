@@ -1,0 +1,5 @@
+With C# Dev Kit, your tests in XUnit, NUnit, MSTest and bUnit will be discovered and organized for you more easily for fast execution and results navigation. 
+The extension also makes VS Code's Command Palette testing commands easily available for debugging and running your tests.
+
+relancer c# dev kit si les l'onglet test explorer n'apparait pas 
+

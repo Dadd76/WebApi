@@ -25,6 +25,18 @@ https://learn.microsoft.com/en-us/aspnet/core/fundamentals/apis?view=aspnetcore-
 ******************* Minimal Api 
 https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-8.0&tabs=visual-studio
 
+*******************TypedResults vs Results
+https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/responses?view=aspnetcore-8.0#typedresults-vs-results
+
+The Results and TypedResults static classes provide similar sets of results helpers. The TypedResults class is the typed equivalent of 
+the Results class. However, the Results helpers' return type is IResult, while each TypedResults helper's return type is one of the IResult 
+implementation types. The difference means that for Results helpers a conversion is needed when the concrete type is needed, for example, 
+for unit testing. The implementation types are defined in the Microsoft.AspNetCore.Http.HttpResults namespace.
+
+Returning TypedResults rather than Results has the following advantages:
+
+o TypedResults helpers return strongly typed objects, which can improve code readability, unit testing, and reduce the chance of runtime errors.
+o The implementation type automatically provides the response type metadata for OpenAPI to describe the endpoint.
 
 ********************Git
 git init
@@ -38,6 +50,26 @@ dotnet Build
 dotnet Run 
 Api listenning on http://localhost:5095/WeatherForecast
 
+********************Testing with C# Dev Kit
+
+https://code.visualstudio.com/docs/csharp/testing
+
+The extension supports the following test frameworks:
+
+xUnit
+NUnit
+MSTest
+The C# Dev Kit extension provides the following features:
+
+Run/Debug tests cases
+View test report
+View tests in Testing Explorer
+
+command palette
+Ctrl + Shift + P 
+
+ligne de commande 
+dotnet new xunit -n MyUnitTests
 
 ********************swagger
 

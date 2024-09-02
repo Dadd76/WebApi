@@ -40,6 +40,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// app.MapGet("/hello2", () => TypedResults.Ok(new Message() { Text = "Hello World!" }));
+
+// app.MapGet("/hello", () => Results.Ok(new Message() { Text = "Hello World!" })).Produces<Message>();
 
 app.MapGet("/", () => "Hello World!");
 
@@ -90,3 +93,9 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoContext db) =>
 });
 
 app.Run();
+
+// static async Task<Ok<TodoItem[]>> GetAllTodos(TodoGroupDbContext database)
+// {
+//     var todos = await database.Todos.ToArrayAsync();
+//     return TypedResults.Ok(todos);
+// }
