@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -66,6 +65,7 @@ namespace MyControllerWebApi.Controllers;
 
             todoItem.Name = todoDTO.Name;
             todoItem.IsComplete = todoDTO.IsComplete;
+         
 
             try
             {
@@ -88,7 +88,8 @@ namespace MyControllerWebApi.Controllers;
             var todoItem = new TodoItem
             {
                IsComplete = todoDTO.IsComplete,
-               Name = todoDTO.Name
+               Name = todoDTO.Name,
+               Secret = "secret"
             };
 
             _context.TodoItems.Add(todoItem);
@@ -97,6 +98,8 @@ namespace MyControllerWebApi.Controllers;
 
             return CreatedAtAction(nameof(GetTodoItem),new { id = todoItem.Id },ItemToDTO(todoItem));
            // return CreatedAtAction("GetTodoItems", new { id = todoItems.Id }, todoItems);
+
+         //  CreatedAtAction//CreatedAtRoute
         }
 
         // DELETE: api/TodoItems/5

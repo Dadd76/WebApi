@@ -9,7 +9,26 @@ namespace TestProject;
 
 public class UnitTest1
 {
-[Fact]
+
+     [Fact]
+    public async Task GetTodoReturnsNotFoundIfNotExists()
+    {
+        // Arrange
+        await using var context = new MockDb().CreateDbContext();
+        var controller = new TodoItemsController(context);
+        
+        // Act
+        var result = await controller.GetTodoItem(1);
+        //Assert
+        Assert.IsAssignableFrom<ActionResult<TodoItemDTO>>(result);
+      
+        //other possible solution
+        Assert.True(result.Result is NotFoundResult);
+        var notFoundResult = (NotFoundResult) result.Result;
+        Assert.NotNull(notFoundResult);
+    }
+
+    [Fact]
     public async Task GetAllReturnsTodosFromDatabase()
     {
         // Arrange
@@ -38,12 +57,6 @@ public class UnitTest1
 
         //Assert
         Assert.IsAssignableFrom<ActionResult<IEnumerable<TodoItemDTO>>>(result);
-    //    Assert.IsType<IEnumerable<TodoItemDTO>>(result);
-    // ActionResult<IEnumerable<TodoItemDTO>>
-    //   Expected: typeof(Microsoft.AspNetCore.Http.HttpResults.Ok<TodoItem[]>)
-    //   Actual:   typeof(Microsoft.AspNetCore.Mvc.ActionResult<IEnumerable<TodoItemDTO>>)
-
-
         Assert.NotNull(result.Value);
         Assert.NotEmpty(result.Value);
 
@@ -60,35 +73,114 @@ public class UnitTest1
         });
     }
 
-    // [Fact]
-    // public async Task GetTodoReturnsTodoFromDatabase()
-    // {
-    //     // Arrange
-    //     await using var context = new MockDb().CreateDbContext();
+    [Fact]
+    public async Task GetTodoReturnsTodoFromDatabase()
+    {
+        // Arrange
+        await using var context = new MockDb().CreateDbContext();
 
-    //     context.TodoItems.Add(new TodoItem
-    //     {
-    //         Id = 2,
-    //         Name = "Test title 2",
-    //         IsComplete = true
-    //     });
+        context.TodoItems.Add(new TodoItem
+        {
+            Id = 2,
+            Name = "Test title 2",
+            IsComplete = true
+        });
 
-    //     await context.SaveChangesAsync();
+        await context.SaveChangesAsync();
 
-    //     // Act
-    //     var controller = new TodoItemsController(context);
-    //     // Act
-    //     var result = await controller.GetTodoItems();
+        // Act
+        var controller = new TodoItemsController(context);
+        // Act
+        var result = await controller.GetTodoItem(2);
+  
+        //Assert
+        Assert.IsType<ActionResult<TodoItemDTO>>(result);
+        Assert.NotNull(result.Value);
+        Assert.Equal(2, result.Value.Id);
+    }
 
-    //     //Assert
-    //     Assert.IsType<Results<Ok<TodoItem>, NotFound>>(result);
+    [Fact]
+    public async Task CreateTodoCreatesTodoInDatabase()
+    {
+        //Arrange
+        await using var context = new MockDb().CreateDbContext();
 
-    //    //ActionResult<TodoItemDTO>
+        var newTodo = new TodoItemDTO
+        {
+            Id = 2,
+            Name = "Test title 2",
+            IsComplete = true
+        };
 
-    //     var okResult = (Ok<TodoItem>)result.Result;
+        //Act
+        var controller = new TodoItemsController(context);
+ 
+        // Act
+        var result = await controller.PostTodoItems(newTodo);
+        //Assert
+        Assert.IsType<ActionResult<TodoItemDTO>>(result);
+        
+        var createdAtActionResult  = (CreatedAtActionResult)result.Result;
+       
+        Assert.NotNull(createdAtActionResult);
+        Assert.NotNull(createdAtActionResult.Value);
 
-    //     Assert.NotNull(okResult.Value);
-    //     Assert.Equal(1, okResult.Value.Id);
-    // }
+        Assert.NotEmpty(context.TodoItems);
+        Assert.Collection(context.TodoItems, todo =>
+        {
+            Assert.Equal("Test title 2", todo.Name);
+            Assert.Equal("secret", todo.Secret);
+        });
+    }
 
+    [Fact]
+    public async Task UpdateTodoUpdatesTodoInDatabase()
+    {
+        //Arrange
+        await using var context = new MockDb().CreateDbContext();
+
+        context.TodoItems.Add(new TodoItem
+        {
+            Id = 2,
+            Name = "Test title 2",
+            IsComplete = true
+        });
+
+        await context.SaveChangesAsync();
+
+        var updatedTodo = new TodoItemDTO
+        {
+            Id = 2,
+            Name = "Updated Test title 2",
+            IsComplete = true
+        };
+
+        //Act
+        var controller = new TodoItemsController(context);
+
+        //Act
+        var result = await controller.PutTodoItems(updatedTodo.Id, updatedTodo);
+
+        //Assert
+        Assert.IsType<NoContentResult>(result);
+
+
+       // var createdResult = (Created<TodoItemDTO>)result;
+        var noContentResult  = (NoContentResult)result;
+        
+        Assert.NotNull(noContentResult);
+
+        //Context
+        var todoInDb = await context.TodoItems.FindAsync((long)2);
+        Assert.NotNull(todoInDb);
+        Assert.Equal("Updated Test title 2", todoInDb!.Name);
+        Assert.True(todoInDb.IsComplete);
+    }
+
+/*
+   var noContentResult = subGenreResult as NoContentResult;
+
+    // Assert
+    Assert.False(noContentResult.StatusCode is StatusCodes.Status204NoContent);
+*/
 }
