@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TestProject;
 
-public class UnitTest1
+public class UnitTestInMemory
 {
 
      [Fact]
@@ -163,9 +163,7 @@ public class UnitTest1
 
         //Assert
         Assert.IsType<NoContentResult>(result);
-
-
-       // var createdResult = (Created<TodoItemDTO>)result;
+        // var createdResult = (Created<TodoItemDTO>)result;
         var noContentResult  = (NoContentResult)result;
         
         Assert.NotNull(noContentResult);
@@ -177,10 +175,43 @@ public class UnitTest1
         Assert.True(todoInDb.IsComplete);
     }
 
-/*
-   var noContentResult = subGenreResult as NoContentResult;
+   [Fact]
+    public async Task DeleteTodoDeletesTodoInDatabase()
+    {
+        //Arrange
+        await using var context = new MockDb().CreateDbContext();
 
-    // Assert
-    Assert.False(noContentResult.StatusCode is StatusCodes.Status204NoContent);
-*/
+        var existingTodo = new TodoItem
+        {
+            Id = 2,
+            Name = "to delete Test title",
+            IsComplete = true
+        };
+
+        context.TodoItems.Add(existingTodo);
+
+        await context.SaveChangesAsync();
+
+        //Act
+        var controller = new TodoItemsController(context);
+
+        var toDeleteExistingTodo = new TodoItemDTO
+        {
+            Id = 2,
+            Name = "to delete Test title",
+            IsComplete = true
+        };
+
+        var result = await controller.DeleteTodoItems((long)2);
+
+        //Assert
+        Assert.IsType<NoContentResult>(result);
+        // var createdResult = (Created<TodoItemDTO>)result;
+        var noContentResult  = (NoContentResult)result;
+        
+        Assert.NotNull(noContentResult);
+
+        Assert.NotNull(noContentResult);
+        Assert.Empty(context.TodoItems);
+    }
 }
