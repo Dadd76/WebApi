@@ -1,0 +1,25 @@
+https://medium.com/@susithapb/understanding-between-controller-controllerbase-and-apicontroller-classes-in-net-74a53df55d50
+
+Controller -> to create controllers for ASP.NET MVC
+
+ControllerBase -> provides basic functionality for handling HTTP requests and responses,
+but does not include any MVC-specific features such as action filters or view rendering.
+
+APIController Class  -> The APIController class is also a part of the Microsoft.AspNetCore.Mvc namespace
+and is used to create controllers for ASP.NET Core Web API applications. It is a specialized version of the 
+ControllerBase class and includes features specific to Web API development such as content negotiation and routing.
+
+L’attribut [ApiController] peut être appliqué à une classe de contrôleur pour activer les comportements rigides spécifiques à l’API suivants :
+
+Exigence du routage d’attribut
+Réponses HTTP 400 automatiques
+Inférence de paramètre de source de liaison
+Inférence de demande multipart/form-data
+Fonctionnalité Détails du problème pour les codes d’état erreur
+
+https://marklowg.medium.com/how-to-unit-test-asp-net-mvc-web-api-controllers-be201b7c410a
+
+https://medium.com/c-sharp-progarmming/unit-testing-in-asp-net-core-web-api-b2e6f7bdb860
+
+
+
