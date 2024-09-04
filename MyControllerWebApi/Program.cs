@@ -1,5 +1,6 @@
 using MyControllerWebApi.Models;
 using Microsoft.EntityFrameworkCore;
+using MyControllerWebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,11 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<TodoContext>(opt =>
     opt.UseInMemoryDatabase("TodoList"));
 
+
+// Add a custom scoped service.
+builder.Services.AddScoped<ITodoService, TodoService>();
+
+builder.Services.AddHttpClient();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

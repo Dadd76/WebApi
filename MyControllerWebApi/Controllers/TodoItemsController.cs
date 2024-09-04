@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyControllerWebApi.Models;
+using MyControllerWebApi.Services;
 
 //GET //PATCH //POST //PUT
 
@@ -14,32 +15,31 @@ namespace MyControllerWebApi.Controllers;
     [ApiController]
     public class TodoItemsController : ControllerBase
     {
-        private readonly TodoContext _context;
-
-        public TodoItemsController(TodoContext context)
+        private readonly ITodoService _todoService;
+        public TodoItemsController(ITodoService todoService)
         {
-            _context = context;
+            _todoService = todoService;
         }
 
         // GET: api/TodoItems
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItemDTO>>> GetTodoItems()
         {
-            return await _context.TodoItems.Select(x => ItemToDTO(x)).ToListAsync();
+            var result = await _todoService.GetTodoItems();
+            return CreatedAtAction(nameof(GetTodoItems), result.Select(ItemToDTO));
         }
 
         // GET: api/TodoItems/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItemDTO>> GetTodoItem(long id)
         {
-            var todoItems = await _context.TodoItems.FindAsync(id);
-
-            if (todoItems == null)
-            {
-                return NotFound();
-            }
-
-            return ItemToDTO(todoItems);
+        var todoItem = await _todoService.GetTodoItem(id);
+        
+        if (todoItem != null)
+             return ItemToDTO(todoItem);
+        
+        else
+            return NotFound("todoItem not found");
         }
 
         // PUT: api/TodoItems/5
@@ -48,36 +48,21 @@ namespace MyControllerWebApi.Controllers;
         public async Task<IActionResult> PutTodoItems(long id, TodoItemDTO todoDTO)
         {
             if (id != todoDTO.Id)
-            {
                 return BadRequest();
-            }
 
-
-            var todoItem = await _context.TodoItems.FindAsync(id);
-
-
-            //_context.Entry(todoItem).State = EntityState.Modified;
+            var todoItem = await _todoService.GetTodoItem(id);
 
             if (todoItem == null)
-            {
-            return NotFound();
-            }
+                return NotFound();
 
             todoItem.Name = todoDTO.Name;
             todoItem.IsComplete = todoDTO.IsComplete;
          
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-
-            catch (DbUpdateConcurrencyException)  when(!TodoItemExists(id))
-            {
+            if(!await _todoService.PutTodoItems(id, todoItem))
                 return NotFound();
-            }
-
-            return NoContent();
+            
+            else 
+                return NoContent();
         }
 
         // POST: api/TodoItems
@@ -92,35 +77,20 @@ namespace MyControllerWebApi.Controllers;
                Secret = "secret"
             };
 
-            _context.TodoItems.Add(todoItem);
-
-            await _context.SaveChangesAsync();
+            await _todoService.PostTodoItems(todoItem);
 
             return CreatedAtAction(nameof(GetTodoItem),new { id = todoItem.Id },ItemToDTO(todoItem));
            // return CreatedAtAction("GetTodoItems", new { id = todoItems.Id }, todoItems);
-
-         //  CreatedAtAction//CreatedAtRoute
         }
 
         // DELETE: api/TodoItems/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTodoItems(long id)
         {
-            var todoItems = await _context.TodoItems.FindAsync(id);
-            if (todoItems == null)
-            {
-                return NotFound();
-            }
-
-            _context.TodoItems.Remove(todoItems);
-            await _context.SaveChangesAsync();
+            if(!await _todoService.DeleteTodoItems(id))
+                return NotFound();   
 
             return NoContent();
-        }
-
-        private bool TodoItemExists(long id)
-        {
-            return _context.TodoItems.Any(e => e.Id == id);
         }
 
         private static TodoItemDTO ItemToDTO(TodoItem todoItem) =>

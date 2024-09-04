@@ -1,3 +1,5 @@
+******* Controller / Controllerbase / apicontroller
+
 https://medium.com/@susithapb/understanding-between-controller-controllerbase-and-apicontroller-classes-in-net-74a53df55d50
 
 Controller -> to create controllers for ASP.NET MVC
@@ -17,9 +19,29 @@ Inférence de paramètre de source de liaison
 Inférence de demande multipart/form-data
 Fonctionnalité Détails du problème pour les codes d’état erreur
 
+*******Why Asynchronous Web API Endpoints | RESTful | async await
+
+https://www.youtube.com/watch?v=TnfCu7Osy-Q
+
+*******Unit test Api controller
+
 https://marklowg.medium.com/how-to-unit-test-asp-net-mvc-web-api-controllers-be201b7c410a
 
 https://medium.com/c-sharp-progarmming/unit-testing-in-asp-net-core-web-api-b2e6f7bdb860
 
+Unit Testing in C# 2022: 7. Web API Controllers
+
+https://www.youtube.com/watch?v=3BsESpxSzzw
+
+Testing entity framework core 
+
+https://www.youtube.com/watch?v=m7r2qyUabTs
+
+********Created, CreatedAtAction, CreatedAtRoute Methods In ASP.NET Core Explained With Examples
+
+https://ochzhen.com/blog/created-createdataction-createdatroute-methods-explained-aspnet-core#created-explained
 
 
+********difference between repository and service 
+
+https://stackoverflow.com/questions/1440096/difference-between-repository-and-service
