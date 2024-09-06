@@ -1,21 +1,24 @@
 using Xunit;
+using Moq;
 using MyControllerWebApi.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using UnitTests.Helpers;
 using MyControllerWebApi.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using MyControllerWebApi.Services;
 
 namespace TestProject;
 
 public class UnitTestInMemory
 {
-
-     [Fact]
+    [Fact]
     public async Task GetTodoReturnsNotFoundIfNotExists()
     {
         // Arrange
         await using var context = new MockDb().CreateDbContext();
-        var controller = new TodoItemsController(context);
+        //var mock = new Mock<ITodoService>();
+        var services = new TodoService(context);
+        var controller = new TodoItemsController(services);
         
         // Act
         var result = await controller.GetTodoItem(1);
@@ -23,8 +26,10 @@ public class UnitTestInMemory
         Assert.IsAssignableFrom<ActionResult<TodoItemDTO>>(result);
       
         //other possible solution
-        Assert.True(result.Result is NotFoundResult);
-        var notFoundResult = (NotFoundResult) result.Result;
+        //  Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult));
+        Assert.IsType<NotFoundObjectResult>(result.Result);
+        Assert.True(result.Result is NotFoundObjectResult);
+        var notFoundResult = (NotFoundObjectResult) result.Result;
         Assert.NotNull(notFoundResult);
     }
 
@@ -50,17 +55,23 @@ public class UnitTestInMemory
         });
 
         await context.SaveChangesAsync();
-
-        var controller = new TodoItemsController(context);
+        var services = new TodoService(context);
+        var controller = new TodoItemsController(services);
+     
         // Act
         var result = await controller.GetTodoItems();
 
         //Assert
         Assert.IsAssignableFrom<ActionResult<IEnumerable<TodoItemDTO>>>(result);
-        Assert.NotNull(result.Value);
-        Assert.NotEmpty(result.Value);
+        // Assert.NotNull(result.Value);
+        // Assert.NotEmpty(result.Value);
 
-        Assert.Collection(result.Value, todo1 =>
+        var okResult = Assert.IsType<OkObjectResult>(result.Result);  // Vérifiez qu'il s'agit d'un OkObjectResult
+        var items = Assert.IsAssignableFrom<IEnumerable<TodoItemDTO>>(okResult.Value);  // Vérifiez que le type est correct
+        Assert.NotEmpty(items);  // Vérifiez que la liste n'est pas vide
+
+
+        Assert.Collection(items, todo1 =>
         {
             Assert.Equal(1, todo1.Id);
             Assert.Equal("Test title 1", todo1.Name);
@@ -89,7 +100,8 @@ public class UnitTestInMemory
         await context.SaveChangesAsync();
 
         // Act
-        var controller = new TodoItemsController(context);
+        var services = new TodoService(context);
+        var controller = new TodoItemsController(services);
         // Act
         var result = await controller.GetTodoItem(2);
   
@@ -113,7 +125,8 @@ public class UnitTestInMemory
         };
 
         //Act
-        var controller = new TodoItemsController(context);
+                var services = new TodoService(context);
+        var controller = new TodoItemsController(services);
  
         // Act
         var result = await controller.PostTodoItems(newTodo);
@@ -156,7 +169,8 @@ public class UnitTestInMemory
         };
 
         //Act
-        var controller = new TodoItemsController(context);
+        var services = new TodoService(context);
+        var controller = new TodoItemsController(services);
 
         //Act
         var result = await controller.PutTodoItems(updatedTodo.Id, updatedTodo);
@@ -193,7 +207,8 @@ public class UnitTestInMemory
         await context.SaveChangesAsync();
 
         //Act
-        var controller = new TodoItemsController(context);
+        var services = new TodoService(context);
+        var controller = new TodoItemsController(services);
 
         var toDeleteExistingTodo = new TodoItemDTO
         {

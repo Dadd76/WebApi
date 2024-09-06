@@ -29,6 +29,10 @@ https://marklowg.medium.com/how-to-unit-test-asp-net-mvc-web-api-controllers-be2
 
 https://medium.com/c-sharp-progarmming/unit-testing-in-asp-net-core-web-api-b2e6f7bdb860
 
+********mOCKING WITH xUnit
+
+https://medium.com/@eugene_s/better-unit-tests-in-c-with-xunit-part-2-mocking-5f024622b691
+
 Unit Testing in C# 2022: 7. Web API Controllers
 
 https://www.youtube.com/watch?v=3BsESpxSzzw

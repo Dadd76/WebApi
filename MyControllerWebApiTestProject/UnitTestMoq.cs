@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using UnitTests.Helpers;
 using MyControllerWebApi.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using Moq;
+using MyControllerWebApi.Services;
 
 namespace TestProject;
 
@@ -11,10 +13,10 @@ public class UnitTestMoq
 {
 
     [Fact]
-    public async Task GetTodoReturnsNotFoundIfNotExists()
+    public /*async Task*/ void GetTodoReturnsNotFoundIfNotExists()
     {
         // Arrange
-        // var mock = new Mock<ITodoService>();
+        var mock = new Mock<ITodoService>();
 
         // mock.Setup(m => m.Find(It.Is<int>(id => id == 1)))
         //     .ReturnsAsync((Todo?)null);
@@ -27,6 +29,6 @@ public class UnitTestMoq
 
         // var notFoundResult = (NotFound) result.Result;
 
-        // Assert.NotNull(notFoundResult);
+        Assert.NotNull(2);
     }
 }

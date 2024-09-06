@@ -25,8 +25,15 @@ namespace MyControllerWebApi.Controllers;
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItemDTO>>> GetTodoItems()
         {
+            // _context.TodoItems.Select(x => ItemToDTO(x)).ToListAsync();;
             var result = await _todoService.GetTodoItems();
-            return CreatedAtAction(nameof(GetTodoItems), result.Select(ItemToDTO));
+               // _context.TodoItems.Select(x => ItemToDTO(x)).ToListAsync();;
+            
+            return  Ok(result.Select(x => ItemToDTO(x)));
+
+//Cannot implicitly convert type 'System.Collections.Generic.IEnumerable<MyControllerWebApi.Models.TodoItemDTO>'
+// to 'Microsoft.AspNetCore.Mvc.ActionResult<System.Collections.Generic.IEnumerable<MyControllerWebApi.Models
+
         }
 
         // GET: api/TodoItems/5
@@ -36,7 +43,7 @@ namespace MyControllerWebApi.Controllers;
         var todoItem = await _todoService.GetTodoItem(id);
         
         if (todoItem != null)
-             return ItemToDTO(todoItem);
+             return  Ok(ItemToDTO(todoItem));
         
         else
             return NotFound("todoItem not found");
