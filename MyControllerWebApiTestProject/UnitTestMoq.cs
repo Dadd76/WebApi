@@ -64,7 +64,6 @@ public class UnitTestMoq
         var items = Assert.IsAssignableFrom<IEnumerable<TodoItemDTO>>(okResult.Value);  // Vérifiez que le type est correct
         Assert.NotEmpty(items);  // Vérifiez que la liste n'est pas vide
 
-
         Assert.Collection(items, todo1 =>
         {
             Assert.Equal(1, todo1.Id);
@@ -76,6 +75,35 @@ public class UnitTestMoq
             Assert.Equal("Test title 2", todo2.Name);
             Assert.True(todo2.IsComplete);
         });
+    }
+
+        [Fact]
+    public async Task GetTodoReturns()
+    {
+        // Arrange
+        var mock = new Mock<ITodoService>();
+
+        mock.Setup(service => service.GetTodoItem(1))
+            .ReturnsAsync(new TodoItem
+            {
+                Id = 1,
+                Name = "Test title",
+                IsComplete = false
+            });
+
+        var controller = new TodoItemsController(mock.Object);
+
+        // Act
+        var result = await controller.GetTodoItem(1);
+
+        //Assert
+        Assert.IsAssignableFrom<ActionResult<TodoItemDTO>>(result);
+        var okResult = Assert.IsType<OkObjectResult>(result.Result);  // Vérifiez qu'il s'agit d'un OkObjectResult
+        var okResult2 = (OkObjectResult) result.Result;
+        
+        Assert.NotNull(okResult2);
+
+
     }
 
 }
