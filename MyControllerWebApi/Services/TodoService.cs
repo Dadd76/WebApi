@@ -26,7 +26,7 @@ public class TodoService : ITodoService
         return true;
     }
 
-    public async Task<TodoItem> GetTodoItem(long id)
+    public async Task<TodoItem?> GetTodoItem(long id)
     {
         return await _context.TodoItems.FindAsync(id);
     }

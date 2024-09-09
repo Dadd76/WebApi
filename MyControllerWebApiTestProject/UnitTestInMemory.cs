@@ -63,9 +63,6 @@ public class UnitTestInMemory
 
         //Assert
         Assert.IsAssignableFrom<ActionResult<IEnumerable<TodoItemDTO>>>(result);
-        // Assert.NotNull(result.Value);
-        // Assert.NotEmpty(result.Value);
-
         var okResult = Assert.IsType<OkObjectResult>(result.Result);  // Vérifiez qu'il s'agit d'un OkObjectResult
         var items = Assert.IsAssignableFrom<IEnumerable<TodoItemDTO>>(okResult.Value);  // Vérifiez que le type est correct
         Assert.NotEmpty(items);  // Vérifiez que la liste n'est pas vide
@@ -106,9 +103,9 @@ public class UnitTestInMemory
         var result = await controller.GetTodoItem(2);
   
         //Assert
-        Assert.IsType<ActionResult<TodoItemDTO>>(result);
-        Assert.NotNull(result.Value);
-        Assert.Equal(2, result.Value.Id);
+        var okResult = Assert.IsType<OkObjectResult>(result.Result);
+        var todoItemDTO = Assert.IsType<TodoItemDTO>(okResult.Value);
+        Assert.Equal(2,todoItemDTO.Id);
     }
 
     [Fact]
