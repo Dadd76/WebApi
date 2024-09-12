@@ -81,7 +81,8 @@ namespace MyControllerWebApi.Controllers;
             {
                IsComplete = todoDTO.IsComplete,
                Name = todoDTO.Name,
-               Secret = "secret"
+               Secret = "secret",
+               Id = todoDTO.Id
             };
 
             await _todoService.PostTodoItems(todoItem);
