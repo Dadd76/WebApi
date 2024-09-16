@@ -65,6 +65,8 @@ namespace MyControllerWebApi.Controllers;
             todoItem.Name = todoDTO.Name;
             todoItem.IsComplete = todoDTO.IsComplete;
          
+            var result  = await _todoService.PutTodoItems(id, todoItem) ;
+
             if(!await _todoService.PutTodoItems(id, todoItem))
                 return NotFound();
             
@@ -93,7 +95,7 @@ namespace MyControllerWebApi.Controllers;
 
         // DELETE: api/TodoItems/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTodoItems(long id)
+        public async Task<ActionResult> DeleteTodoItems(long id)
         {
             if(!await _todoService.DeleteTodoItems(id))
                 return NotFound();   
