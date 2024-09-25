@@ -31,9 +31,6 @@ namespace MyControllerWebApi.Controllers;
             
             return  Ok(result.Select(x => ItemToDTO(x)));
 
-//Cannot implicitly convert type 'System.Collections.Generic.IEnumerable<MyControllerWebApi.Models.TodoItemDTO>'
-// to 'Microsoft.AspNetCore.Mvc.ActionResult<System.Collections.Generic.IEnumerable<MyControllerWebApi.Models
-
         }
 
         // GET: api/TodoItems/5
