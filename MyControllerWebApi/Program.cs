@@ -18,6 +18,7 @@ builder.Services.AddDbContext<TodoContext>(opt =>
 builder.Services.AddScoped<ITodoService, TodoService>();
 
 builder.Services.AddHttpClient();
+//The method call builder.Services.AddEndpointsApiExplorer() registers services that expose information about our endpoints:
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -29,7 +30,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+///
 // Html javascript page
 app.UseDefaultFiles();
 app.UseStaticFiles();
@@ -41,3 +42,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+public partial class Program
+{ }

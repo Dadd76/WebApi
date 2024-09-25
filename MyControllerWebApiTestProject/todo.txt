@@ -1,3 +1,6 @@
+
+
+ligne de commande 
 dotnet new xunit -n MyUnitTests
 
 Unit Testing Controllers in ASP.NET Web API 2
@@ -20,3 +23,7 @@ HttpResponseMessage / actionResult
 https://learn.microsoft.com/en-us/aspnet/web-api/overview/getting-started-with-aspnet-web-api/action-results
 
 https://ochzhen.com/blog/created-createdataction-createdatroute-methods-explained-aspnet-core
+
+
+ajouter le projet manuellement dans la solution 
+dotnet sln add <chemin_vers_le_fichier_csproj>

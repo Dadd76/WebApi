@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyControllerWebApi", "MyCon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyControllerWebApiTestProject", "MyControllerWebApiTestProject\TestProject.csproj", "{63130A69-DDD5-44D0-A328-DEBF357914CD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MyControllerWebApiIntegrationTestProject", "MyControllerWebApiIntegrationTestProject", "{E967CE28-D6F2-45C9-9077-75375405A8C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTestProject", "MyControllerWebApiIntegrationTestProject\IntegrationTestProject.csproj", "{05F0CC1B-F5BC-4EEF-BB9B-DB3966AD8E9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,10 @@ Global
 		{63130A69-DDD5-44D0-A328-DEBF357914CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63130A69-DDD5-44D0-A328-DEBF357914CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63130A69-DDD5-44D0-A328-DEBF357914CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05F0CC1B-F5BC-4EEF-BB9B-DB3966AD8E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05F0CC1B-F5BC-4EEF-BB9B-DB3966AD8E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05F0CC1B-F5BC-4EEF-BB9B-DB3966AD8E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05F0CC1B-F5BC-4EEF-BB9B-DB3966AD8E9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -35,6 +43,6 @@ Global
 		SolutionGuid = {F67F20D0-42D7-4E5B-8CDB-97A1B54EFCA7}
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		
+		{05F0CC1B-F5BC-4EEF-BB9B-DB3966AD8E9B} = {E967CE28-D6F2-45C9-9077-75375405A8C9}
 	EndGlobalSection
 EndGlobal
