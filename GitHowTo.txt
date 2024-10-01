@@ -1,4 +1,4 @@
-**** réaliser un commit 
+**** réaliser un commit ****
 
 1. git-add - Add file contents to the index 
 https://git-scm.com/docs/git-add
@@ -15,7 +15,7 @@ https://git-scm.com/docs/git-commit
 https://git-scm.com/docs/git-push/fr
 
 
-**** Création d'une branche 
+**** Création d'une branche ****
 -- option 1. git-branch - List, create, or delete branches
 git branch <branch name> git branch // création de la branche 
 
@@ -33,7 +33,7 @@ Git a déplacé le pointeur HEAD vers la nouvelle branche.
 création de la branch feature4 à partir de la branche develop.
 git checkout -b feature4 develop
 
-**** merger une branche 
+**** merger une branche ****
 master 
 main 
 
