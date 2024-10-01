@@ -1,0 +1,29 @@
+
+
+ligne de commande 
+dotnet new xunit -n MyUnitTests
+
+Unit Testing Controllers in ASP.NET Web API 2
+
+https://learn.microsoft.com/en-us/aspnet/web-api/overview/testing-and-debugging/unit-testing-controllers-in-web-api
+
+
+With C# Dev Kit, your tests in XUnit, NUnit, MSTest and bUnit will be discovered and organized for you more easily for fast execution and results navigation. 
+The extension also makes VS Code's Command Palette testing commands easily available for debugging and running your tests.
+
+relancer c# dev kit si les l'onglet test explorer n'apparait pas 
+
+
+These are some of the general things to test, but the specifics depend on your controller implementation. In particular, it makes 
+a big difference whether your controller actions return HttpResponseMessage or IHttpActionResult. For more information about these 
+result types, see Action Results in Web Api 2.
+
+HttpResponseMessage / actionResult 
+
+https://learn.microsoft.com/en-us/aspnet/web-api/overview/getting-started-with-aspnet-web-api/action-results
+
+https://ochzhen.com/blog/created-createdataction-createdatroute-methods-explained-aspnet-core
+
+
+ajouter le projet manuellement dans la solution 
+dotnet sln add <chemin_vers_le_fichier_csproj>

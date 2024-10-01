@@ -1,0 +1,164 @@
+dotnet new webapi -o MyWebApi :
+
+dotnet new webapi : Crée un nouveau projet Web API.
+-o MyWebApi : Spécifie le nom du répertoire de sortie pour le projet. Un répertoire nommé MyWebApi sera créé et le projet sera généré dedans.
+cd MyWebApi : Change le répertoire actuel pour le répertoire du projet nouvellement créé.
+
+code . : Ouvre le répertoire courant dans Visual Studio Code.
+
+dotnet restore : Télécharge et installe les packages dépendants nécessaires pour le projet.
+
+https://www.youtube.com/watch?v=a887F3Bs24U
+
+*******************controller-based web API / Minimal API 
+
+https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-8.0&tabs=visual-studio
+
+pour lister les templates disponnibles 'dotnet new list'
+
+controller-based web API : dotnet new webapi --use-controllers -o MyControllerWebApi
+Minimal API (par défaut) : dotnet new webapi -o MyWebApi
+
+https://learn.microsoft.com/en-us/aspnet/core/fundamentals/apis?view=aspnetcore-8.0
+
+
+******************* Minimal Api 
+https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-8.0&tabs=visual-studio
+
+*******************TypedResults vs Results
+https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/responses?view=aspnetcore-8.0#typedresults-vs-results
+
+The Results and TypedResults static classes provide similar sets of results helpers. The TypedResults class is the typed equivalent of 
+the Results class. However, the Results helpers' return type is IResult, while each TypedResults helper's return type is one of the IResult 
+implementation types. The difference means that for Results helpers a conversion is needed when the concrete type is needed, for example, 
+for unit testing. The implementation types are defined in the Microsoft.AspNetCore.Http.HttpResults namespace.
+
+Returning TypedResults rather than Results has the following advantages:
+
+o TypedResults helpers return strongly typed objects, which can improve code readability, unit testing, and reduce the chance of runtime errors.
+o The implementation type automatically provides the response type metadata for OpenAPI to describe the endpoint.
+
+********************Git
+git init
+git remote add origin https://github.com/Dadd76/WebApi      
+git add .
+git commit -m "first commit controller based API and Minimal API"
+git push --set-upstream origin master      
+
+********************Build and Run 
+dotnet Build
+dotnet Run 
+Api listenning on http://localhost:5095/WeatherForecast
+
+********************Testing with C# Dev Kit
+
+https://code.visualstudio.com/docs/csharp/testing
+
+The extension supports the following test frameworks:
+
+xUnit
+NUnit
+MSTest
+The C# Dev Kit extension provides the following features:
+
+Run/Debug tests cases
+View test report
+View tests in Testing Explorer
+
+command palette
+Ctrl + Shift + P 
+
+ligne de commande 
+dotnet new xunit -n MyUnitTests
+
+********************swagger
+
+https://swagger.io/tools/swagger-ui/
+http://localhost:5095/swagger/v1/swagger.json
+http://localhost:5095/swagger/index.html
+
+
+
+additionnal package 
+
+//DbContext 
+
+dotnet add package Microsoft.EntityFrameworkCore.InMemory
+
+//Scaffold controller
+
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet tool uninstall -g dotnet-aspnet-codegenerator
+dotnet tool install -g dotnet-aspnet-codegenerator
+dotnet tool update -g dotnet-aspnet-codegenerator
+
+Trust the HTTPS development certificate by running the following command:
+
+.NET CLI
+
+Copy
+dotnet dev-certs https --trust
+
+// add gitignore
+dotnet new gitignore
+
+//Tutorial: Call an ASP.NET Core web API with JavaScript
+https://learn.microsoft.com/en-us/aspnet/core/tutorials/web-api-javascript?view=aspnetcore-8.0
+
+//curl -X
+ curl -X 'GET'   'http://localhost:5095/api/TodoItems/1'   -H 'accept: text/plain'
+
+https://learn.microsoft.com/en-us/shows/back-end-web-development-with-dotnet-for-beginners/
+
+
+
+PS C:\Users\dadd\Source\Repos\ApiWebC#> dotnet new list
+Ces modèles correspondent à votre entrée : .
+
+Nom du modèle                                         Nom court                   Langue      Balises
+----------------------------------------------------  --------------------------  ----------  --------------------------
+API web ASP.NET Core                                  webapi                      [C#],F#     Web/Web API/API/Service   
+API web ASP.NET Core (AOT natif)                      webapiaot                   [C#]        Web/Web API/API/Service
+Application console                                   console                     [C#],F#,VB  Common/Console
+Application web ASP.NET Core                          webapp,razor                [C#]        Web/MVC/Razor Pages
+Application web ASP.NET Core (modèle-vue-contrôleur)  mvc                         [C#],F#     Web/MVC
+Application web Blazor                                blazor                      [C#]        Web/Blazor/WebAssembly
+Application WebAssembly Blazor                        blazorwasm                  [C#]        Web/Blazor/WebAssembly/PWA
+Application Windows Forms                             winforms                    [C#],VB     Common/WinForms
+Application WPF                                       wpf                         [C#],VB     Common/WPF
+ASP.NET Core vide                                     web                         [C#],F#     Web/Empty
+Bibliothèque de classe                                classlib                    [C#],F#,VB  Common/Library
+Bibliothèque de classes Razor                         razorclasslib               [C#]        Web/Razor/Library
+Bibliothèque de classes Windows Forms                 winformslib                 [C#],VB     Common/WinForms
+Bibliothèque de classes WPF                           wpflib                      [C#],VB     Common/WPF
+Bibliothèque de contrôles personnalisés WPF           wpfcustomcontrollib         [C#],VB     Common/WPF
+Bibliothèque de contrôles utilisateur WPF             wpfusercontrollib           [C#],VB     Common/WPF
+Bibliothèque de contrôles Windows Forms               winformscontrollib          [C#],VB     Common/WinForms
+Composant Razor                                       razorcomponent              [C#]        Web/ASP.NET
+Configuration NuGet                                   nugetconfig,nuget.config                Config
+Configuration web                                     webconfig                               Config
+Contrôleur API                                        apicontroller               [C#]        Web/ASP.NET
+Contrôleur MVC                                        mvccontroller               [C#]        Web/ASP.NET
+Fichier .editorconfig                                 editorconfig,.editorconfig              Config
+fichier gitignore dotnet                              gitignore,.gitignore                    Config
+fichier global.json                                   globaljson,global.json                  Config
+Fichier manifeste de l’outil local Dotnet             tool-manifest                           Config
+Fichier MSBuild Directory.Build.props                 buildprops                              MSBuild/props
+Fichier MSBuild Directory.Build.targets               buildtargets                            MSBuild/props
+Fichier solution                                      sln,solution                            Solution
+Fichier tampon de protocole                           proto                                   Web/gRPC
+MSTest Playwright Test Project                        mstest-playwright           [C#]        Test/MSTest/Playwright
+MSTest Test Project                                   mstest                      [C#],F#,VB  Test/MSTest
+MVC ViewImports                                       viewimports                 [C#]        Web/ASP.NET
+MVC ViewStart                                         viewstart                   [C#]        Web/ASP.NET
+NUnit 3 Test Item                                     nunit-test                  [C#],F#,VB  Test/NUnit
+NUnit 3 Test Project                                  nunit                       [C#],F#,VB  Test/NUnit
+NUnit Playwright Test Project                         nunit-playwright            [C#]        Test/NUnit/Playwright
+Page Razor                                            page                        [C#]        Web/ASP.NET
+Service gRPC ASP.NET Core                             grpc                        [C#]        Web/gRPC/API/Service
+Service Worker                                        worker                      [C#],F#     Common/Worker/Web
+Vue Razor                                             view                        [C#]        Web/ASP.NET
+xUnit Test Project                                    xunit                       [C#],F#,VB  Test/xUnit

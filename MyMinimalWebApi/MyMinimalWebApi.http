@@ -1,0 +1,6 @@
+@MMyMinimalWebApi_HostAddress = http://localhost:5110
+
+GET {{MyMinimalWebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

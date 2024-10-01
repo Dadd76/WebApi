@@ -1,0 +1,58 @@
+******* Controller / Controllerbase / apicontroller
+
+https://medium.com/@susithapb/understanding-between-controller-controllerbase-and-apicontroller-classes-in-net-74a53df55d50
+
+Controller -> to create controllers for ASP.NET MVC
+
+ControllerBase -> provides basic functionality for handling HTTP requests and responses,
+but does not include any MVC-specific features such as action filters or view rendering.
+
+APIController Class  -> The APIController class is also a part of the Microsoft.AspNetCore.Mvc namespace
+and is used to create controllers for ASP.NET Core Web API applications. It is a specialized version of the 
+ControllerBase class and includes features specific to Web API development such as content negotiation and routing.
+
+L’attribut [ApiController] peut être appliqué à une classe de contrôleur pour activer les comportements rigides spécifiques à l’API suivants :
+
+Exigence du routage d’attribut
+Réponses HTTP 400 automatiques
+Inférence de paramètre de source de liaison
+Inférence de demande multipart/form-data
+Fonctionnalité Détails du problème pour les codes d’état erreur
+
+*******Why Asynchronous Web API Endpoints | RESTful | async await
+
+https://www.youtube.com/watch?v=TnfCu7Osy-Q
+
+*******Unit test Api controller
+
+https://marklowg.medium.com/how-to-unit-test-asp-net-mvc-web-api-controllers-be201b7c410a
+
+https://medium.com/c-sharp-progarmming/unit-testing-in-asp-net-core-web-api-b2e6f7bdb860
+
+********mOCKING WITH xUnit
+
+https://medium.com/@eugene_s/better-unit-tests-in-c-with-xunit-part-2-mocking-5f024622b691
+
+Unit Testing in C# 2022: 7. Web API Controllers
+
+https://www.youtube.com/watch?v=3BsESpxSzzw
+
+Testing entity framework core 
+
+https://www.youtube.com/watch?v=m7r2qyUabTs
+
+********Created, CreatedAtAction, CreatedAtRoute Methods In ASP.NET Core Explained With Examples
+
+https://ochzhen.com/blog/created-createdataction-createdatroute-methods-explained-aspnet-core#created-explained
+
+
+********difference between repository and service 
+
+https://stackoverflow.com/questions/1440096/difference-between-repository-and-service
+
+
+https://cdiese.fr/csharp7-valuetask/
+
+
+**********parameter binding validation 
+https://learn.microsoft.com/fr-fr/aspnet/web-api/overview/formats-and-model-binding/parameter-binding-in-aspnet-web-api
