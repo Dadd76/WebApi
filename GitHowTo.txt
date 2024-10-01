@@ -36,9 +36,11 @@ git checkout -b feature4 develop
 **** suprimer une branch local 
 git branch -d [nom-de-ma-branche]
 
+**** merger une branche : La fusion des branches dans un référentiel local ****
+Dans cet exemple, on fusionne la branche jeff/feature1 dans la branche main. Notez qu’il s’agit d’une fusion en avance rapide.
 
+git checkout main git merge jeff/feature1
 
-**** merger une branche ****
 master 
 main 
 
