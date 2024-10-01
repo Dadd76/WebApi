@@ -33,6 +33,11 @@ Git a déplacé le pointeur HEAD vers la nouvelle branche.
 création de la branch feature4 à partir de la branche develop.
 git checkout -b feature4 develop
 
+**** suprimer une branch local 
+git branch -d [nom-de-ma-branche]
+
+
+
 **** merger une branche ****
 master 
 main 
