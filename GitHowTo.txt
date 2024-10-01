@@ -1,0 +1,48 @@
+**** réaliser un commit ****
+
+1. git-add - Add file contents to the index 
+https://git-scm.com/docs/git-add
+git add . 
+
+2. git-status - Show the working tree statu
+https://git-scm.com/docs/git-status
+git status -b
+
+3. git-commit - Record changes to the repository
+https://git-scm.com/docs/git-commit
+
+4. git-push - Met à jour les références distantes ainsi que les objets associés
+https://git-scm.com/docs/git-push/fr
+
+
+**** Création d'une branche ****
+-- option 1. git-branch - List, create, or delete branches
+git branch <branch name> git branch // création de la branche 
+
+Notez que la création d’une branche par ce moyen ne fait pas automatiquement basculer vers la nouvelle branche. 
+Git utilise un astérisque et une police de couleur différente pour identifier la branche active. 
+Cette désignation représente le pointeur HEAD indiquant quelle branche est active.
+
+-- option 2. git-checkout - Switch branches or restore working tree files
+git checkout -b <branch name> git branch
+
+Si vous souhaitez créer une branche et l’extraire simultanément, utilisez la commande git checkout.
+Le paramètre -b permet de spécifier le nom de la branche. Notez qu’une fois la commande terminée, 
+Git a déplacé le pointeur HEAD vers la nouvelle branche.
+
+création de la branch feature4 à partir de la branche develop.
+git checkout -b feature4 develop
+
+**** suprimer une branch local 
+git branch -d [nom-de-ma-branche]
+
+**** merger une branche : La fusion des branches dans un référentiel local ****
+Dans cet exemple, on fusionne la branche jeff/feature1 dans la branche main. Notez qu’il s’agit d’une fusion en avance rapide.
+
+git checkout main git merge jeff/feature1
+
+master 
+main 
+
+
+
