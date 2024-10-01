@@ -41,8 +41,24 @@ Dans cet exemple, on fusionne la branche jeff/feature1 dans la branche main. Not
 
 git checkout main git merge jeff/feature1
 
-master 
-main 
+**** merger une branche : Fusionner des branches dans un référentiel distant ****
+
+Fusionner des branches dans un référentiel distant
+Si vous créez une branche dans votre référentiel local, le référentiel distant ignore l’existence de cette branche. Avant de pouvoir envoyer par push le code de la branche dans le référentiel distant, vous devez définir le référentiel distant comme la branche amont à l’aide de la commande git push. Simultanément, cette commande définit la branche amont et envoie le contenu de la branche vers le référentiel distant.
+
+git push --set-upstream origin <branch name>
+
+
+
+
+
+
+documentation : 
+
+https://www.varonis.com/fr/blog/git-branching#:~:text=Pour%20fusionner%20des%20branches%20localement,%C3%A0%20int%C3%A9grer%20%C3%A0%20cette%20branche.
+https://git-scm.com/doc
+https://docs.github.com/fr
+
 
 
 
