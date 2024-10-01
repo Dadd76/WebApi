@@ -52,3 +52,7 @@ https://stackoverflow.com/questions/1440096/difference-between-repository-and-se
 
 
 https://cdiese.fr/csharp7-valuetask/
+
+
+**********parameter binding validation 
+https://learn.microsoft.com/fr-fr/aspnet/web-api/overview/formats-and-model-binding/parameter-binding-in-aspnet-web-api

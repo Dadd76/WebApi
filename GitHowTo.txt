@@ -1,0 +1,11 @@
+**** réaliser un commit 
+
+1. git-add - Add file contents to the index 
+https://git-scm.com/docs/git-add
+git add . 
+
+2. git status
+https://git-scm.com/docs/git-status
+git status -b
+
+3. 
